@@ -1,0 +1,43 @@
+using System;
+
+//04. Sieve of Eratosthenes
+
+namespace Practice
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            int n = int.Parse(Console.ReadLine());
+            int[] numbers = new int[n];
+            bool[] primes = new bool[n + 1];
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                primes[i]= true;
+            }
+           
+            primes[0] = primes[1] = false;
+            for (int i = 2; i <= n/2 ; i++)
+            {
+                if(primes[i] == true)
+                    for (int k = 2; k <= n/i; k++)
+                    {
+                        primes[i * k] = false;
+                    }
+            }
+
+            for (int i = 0; i <= n; i++)
+            {
+                if(primes[i] == true)
+                    Console.Write(i + " ");
+            }
+            Console.WriteLine();
+        }
+
+       
+
+        
+    }
+}
