@@ -1,0 +1,51 @@
+using System;
+using System.Linq;
+
+//08. Most Frequent Number
+
+namespace _08._Most_Frequent_Number
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] numbersArr = Console.ReadLine().Split().ToArray();
+
+            string[] numbers = new string[numbersArr.Length];
+            int[] countTimes = new int[numbersArr.Length];
+
+            int cnt = 0;
+
+            for (int index = 0; index < numbersArr.Length; index++)
+            {
+                int indexOfCurrent = Array.IndexOf(numbers, numbersArr[index]);
+
+                if (indexOfCurrent == -1)
+                {
+                    numbers[cnt] = (numbersArr[index]);
+                    countTimes[cnt] = 1;
+                    cnt++;
+                }
+                else
+                {
+                    countTimes[indexOfCurrent] += 1;
+                }
+            }
+
+            int timesOfMostFrequent = countTimes[0];
+            int mostFrequentIndex = 0;
+
+            for (int index = 1; index < countTimes.Count(); index++)
+            {
+                if (timesOfMostFrequent < countTimes[index])
+                {
+                    timesOfMostFrequent = countTimes[index];
+                    mostFrequentIndex = index;
+                }
+            }
+
+            Console.WriteLine(int.Parse(numbers[mostFrequentIndex]));
+            //goto input;
+        }
+    }
+}
